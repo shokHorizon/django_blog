@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+{% block content %}
+<div id="main-container">
+    <div class="new">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|safe|linebreaks }}</p>
+        <span>Автор статьи: <a>{{ post.author }}</a></span>
+    </div>
+</div>
+{% endblock content %}

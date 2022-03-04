@@ -1,0 +1,27 @@
+
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<div class='row'>
+{% for post in posts %}
+    <div class="card col-6">
+        <div class='card-header'>
+            <a class='display-6 link-dark' href="{% url 'post' post.id %}">{{ post.title }}</a>
+        </div>
+        <div class='card-body'>
+            <p>{{ post.text|striptags|slice:":255" }}...</p>
+            {% if request.user.is_authenticated and request.user.id == post.author.id %}
+            <div class="col-12" >
+            <a class='btn btn-danger' href="{% url 'delete_post' post.id %}">Удалить</a>
+            <a class='btn btn-secondary' href="{% url 'edit_post' post.id %}">Изменить</a> 
+            </div>
+            {% endif %}
+        </div>
+        <div class='card-footer container-fluid'>
+            <span>{{ post.pub_date|date:"d.m.y" }}</span>
+            <span>Автор: {{ post.author }}</span>           
+        </div>       
+    </div>
+{% endfor %}
+</row>
+{% endblock content %}
