@@ -2,26 +2,66 @@
 {% extends '_base.html' %}
 {% load static %}
 {% block content %}
-<div class='row'>
+<div class='categories'>
+    <div class="pill active"><a>Games</a></div>
+    <div class="pill"><a>Development</a></div>
+</div>
+<h2 class="index-header">Статьи недели:</h2>
+<div class='container card-container'>
 {% for post in posts %}
-    <div class="card col-6">
+    <div class="card">
+        <div class="card-image">
+            <img src="{% static 'images/topic_image.jpg' %}" alt="">
+        </div> 
+        <div class="pill active">
+            <span">{{ post.category }}</span>
+        </div>
         <div class='card-header'>
-            <a class='display-6 link-dark' href="{% url 'post' post.id %}">{{ post.title }}</a>
+            <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
         </div>
-        <div class='card-body'>
-            <p>{{ post.text|striptags|slice:":255" }}...</p>
-            {% if request.user.is_authenticated and request.user.id == post.author.id %}
-            <div class="col-12" >
-            <a class='btn btn-danger' href="{% url 'delete_post' post.id %}">Удалить</a>
-            <a class='btn btn-secondary' href="{% url 'edit_post' post.id %}">Изменить</a> 
-            </div>
-            {% endif %}
+        <div class='card-body'>          
+            <p>{{ post.text|striptags|slice:":100" }}...</p>
         </div>
-        <div class='card-footer container-fluid'>
+        <div class='card-footer'>
             <span>{{ post.pub_date|date:"d.m.y" }}</span>
-            <span>Автор: {{ post.author }}</span>           
-        </div>       
+            <span>Автор: {{ post.author }}</span>
+            {% if request.user.is_authenticated and request.user.id == post.author.id %}
+            <div>
+                <a href="{% url 'delete_post' post.id %}">Удалить</a>
+                <a href="{% url 'edit_post' post.id %}">Изменить</a> 
+            </div>
+            {% endif %}        
+        </div>   
     </div>
 {% endfor %}
-</row>
+</div>
+<h2 class="index-header">Недавние статьи:</h2>
+<div class='container card-container'>
+    {% for post in posts %}
+        <div class="card">
+            <div class="card-image">
+                <img src="{% static 'images/topic_image.jpg' %}" alt="">
+            </div> 
+            <div class="pill active">
+                <span">{{ post.category }}</span>
+            </div>
+            <div class='card-header'>
+                <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
+            </div>
+            <div class='card-body'>          
+                <p>{{ post.text|striptags|slice:":100" }}...</p>
+            </div>
+            <div class='card-footer'>
+                <span>{{ post.pub_date|date:"d.m.y" }}</span>
+                <span>Автор: {{ post.author }}</span>
+                {% if request.user.is_authenticated and request.user.id == post.author.id %}
+                <div>
+                    <a href="{% url 'delete_post' post.id %}">Удалить</a>
+                    <a href="{% url 'edit_post' post.id %}">Изменить</a> 
+                </div>
+                {% endif %}        
+            </div>   
+        </div>
+    {% endfor %}
+    </div>
 {% endblock content %}

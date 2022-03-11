@@ -1,6 +1,5 @@
 {% extends '_base.html' %}
 {% block content %}
-<div class='form-group'>
 <form method="POST">
     {% csrf_token %}
     <div class='mb-3'>
@@ -13,5 +12,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Войти</button>
 </form>
-</div>
 {% endblock content %}

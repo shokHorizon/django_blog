@@ -1,9 +1,147 @@
 body {
-    background-color: #0D1B2A;
+    background-color: white;
 }
 
-.header-link a {
-    font-size: 20px;
-    color: #E0FBFC;
+a{
+   text-decoration: none;
+   outline: none;
+   color: black;
+}
+
+ul {
+   list-style: none;
+}
+
+*{
+    font-family: Montserrat;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    transition: .5s ease-in-out;
+}
+
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+header{
+    background-color: #012C3F;
+}
+
+nav{
+    font-weight: 500;
+    line-height: 17px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav *{
+    color: white;
+}
+
+.navbar-brand{
+    align-self: center;
+}
+
+.nav-list{
+    display: flex;
+}
+
+.nav-item{
+    margin-left: 10px;
+    align-self: center;
+}
+
+body{
+    background-color: white;
+}
+
+.categories{
+    display: flex;
+}
+
+.pill{
+    min-width: 60px;
+    width: min-content;
+    margin: 5px 10px 5px 0px;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px;
+    color: black;
+    background-color: #e5e5e5;
     text-decoration: none;
+}
+
+.pill.active{
+    background-color: #006FA0;
+}
+
+.pill.active *{
+    color: white
+}
+
+.pill.active:hover{
+    opacity: 70%;
+}
+
+.index-header{
+    left: 0;
+    margin: 30px 0 20px 20px;
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.card *{
+    font-size: 12px;
+    color: white;
+}
+
+.card > .pill{
+    position: absolute;
+    margin: 5px
+}
+
+.card{
+    grid-template-rows: 25% 20% 10%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 23.75%, rgba(0, 0, 0, 0.7) 100%);
+    border: solid black 1px;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    align-content: end;
+}
+
+.card-image{
+    position: absolute;
+    width: inherit;
+    z-index: -1;
+}
+
+.card-image img{
+    width: -webkit-fill-available;
+}
+
+.card-header{
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+.card-header *{
+    font-size: 18px;
+}
+
+.card-body{
+    display: grid;
+    align-content: end;
+    font-size: 12px;
+    padding: 10px 15px;
 }

@@ -1,37 +1,33 @@
 {% load static %}
 <header>
-    <nav class="navbar navbar-dark bg-dark ">
-        <div class='container-fluid'>
-            <li>
-                <a class='navbar-brand' href='{% url 'index' %}'>
-                    Neisk.ru
+    <nav class="container">
+        <a class='navbar-brand' href='{% url 'index' %}'>
+            Neisk.ru
+        </a>
+        <ul class="nav-list">
+            {% if request.user.is_authenticated is False %}
+            <li class="nav-item">
+                <a class='nav-link link-light' href='{% url 'login' %}'>
+                    Войти
                 </a>
             </li>
-            <ul class="nav justify-content-end">
-                {% if request.user.is_authenticated is False %}
-                <li class="nav-item">
-                    <a class='nav-link link-light' href='{% url 'login' %}'>
-                        Войти
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class='nav-link link-light' href='{% url 'register' %}'>
-                        Регистрация
-                    </a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class='nav-link link-light' href='{% url 'logout' %}'>
-                        Выйти
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class='nav-link link-light' href='{% url 'create_post' %}'>
-                        Написать статью
-                    </a>
-                </li>
-            {% endif %}
-            </ul>
-        </div>
+            <li class="nav-item">
+                <a class='nav-link link-light' href='{% url 'register' %}'>
+                    Регистрация
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class='nav-link link-light' href='{% url 'logout' %}'>
+                    Выйти
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='nav-link link-light' href='{% url 'create_post' %}'>
+                    Написать статью
+                </a>
+            </li>
+        {% endif %}
+        </ul>
     </nav>
 </header>
