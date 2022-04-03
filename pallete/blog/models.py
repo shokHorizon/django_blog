@@ -1,7 +1,8 @@
-from tabnanny import verbose
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -11,20 +12,13 @@ class Category(models.Model):
         return self.name
 
 
-class Comment(models.Model):
-    text = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    
-    def __str__(self) -> str:
-        return self.text
-
-
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=80)
-    text = models.TextField()
+    text = RichTextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='likes')
 
     def __str__(self) -> str:
         return self.title
@@ -33,3 +27,10 @@ class Post(models.Model):
         return reverse("post", kwargs={"pk": self.pk})
     
 
+class Comment(models.Model):
+    text = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.DO_NOTHING, related_name='comments')
+    
+    def __str__(self) -> str:
+        return self.text

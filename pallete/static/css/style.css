@@ -145,3 +145,58 @@ body{
     font-size: 12px;
     padding: 10px 15px;
 }
+
+.card-footer{
+    padding-left: 1.5em;
+}
+
+.card-footer img{
+    vertical-align: text-bottom;
+}
+
+.btn-del{
+    color: #f9eaff;
+    background-color: #b82020;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 0.2em;
+}
+
+.btn-edit{
+    color: #f9eaff;
+    background-color: #cab419;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 0.2em;
+}
+
+.post-title{
+    padding-top: 1em;
+}
+
+.post-title h1{
+    font-size: 2rem;
+}
+
+.post-title *{
+    font-size: 0.8rem;
+}
+
+.post-content{
+    padding: 1em 0;
+}
+
+.container.post{
+    max-width: 780px;
+}
+
+.comment{
+    background-color: #C0C0C04D;
+    margin: 1em 0;
+    border-radius: 5px;
+}
+
+.comment span{
+    display: block;
+    padding: 0.5em;
+}

@@ -3,19 +3,20 @@
 <div id="main-container">
     <form method="POST">
     {% csrf_token %}
-    <div class='mb-3'>
-        <label class='form-label'>Название</label>
+    <div>
+        <label>Название</label>
         {{ form.title }}
     </div>
-    <div class='mb-3'>
-        <label class='form-label'>Содержание</label>
+    <div>
+        <label>Содержание</label>
+        {{ form.media }}
         {{ form.text }}
     </div>
-    <div class='mb-3'>
-        <label class='form-label'>Категория</label>
+    <div>
+        <label>Категория</label>
         {{ form.category }}
     </div>
-    <button type="submit" class="btn btn-primary">Отправить</button>
+    <button type="submit">Отправить</button>
     </form>
 </div>
 {% endblock content %}

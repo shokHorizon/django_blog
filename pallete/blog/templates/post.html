@@ -1,10 +1,31 @@
 {% extends '_base.html' %}
 {% block content %}
-<div id="main-container">
-    <div class="new">
+<div class='categories'>
+    <div class="pill active"><a>{{ post.category }}</a></div>
+</div>
+<div class="container post">
+    <div class="post-title">
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|safe|linebreaks }}</p>
         <span>Автор статьи: <a>{{ post.author }}</a></span>
+    </div>
+    <div class="post-content">
+        <p>{{ post.text|safe|linebreaks }}</p>
+    </div>
+    <div class="comments">
+        {% if post.comments.count != 0 %}
+        <h2>Comments</h2>
+        {% for comment in post.comments.all %}
+        <div class="comment">
+            <span>{{ comment.author }}</span>
+            <span>{{ comment.text }}</span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <form method="POST" action="{% url 'create_comment' post.id %}">
+            {% csrf_token %}
+            {{ form.text }}
+            <input type="submit">
+        </form>
     </div>
 </div>
 {% endblock content %}
