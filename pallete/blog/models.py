@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -7,6 +8,10 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name = models.CharField(max_length=15)
+    
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
     def __str__(self) -> str:
         return self.name

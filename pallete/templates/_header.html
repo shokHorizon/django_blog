@@ -10,6 +10,9 @@
                     Написать статью
                 </a>
             </li>
+            <form id="search_form" action="{% url 'search_post'  %}" method="GET">
+                <input class="text-black" name='q' type="text" placeholder="Поиск">
+            </form>
             {% if request.user.is_authenticated is False %}
             <li class="nav-item">
                 <a class='nav-link link-light' href='{% url 'login' %}'>
@@ -31,3 +34,7 @@
         </ul>
     </nav>
 </header>
+<div class='categories'>
+    <div class="pill active"><a>Games</a></div>
+    <div class="pill"><a>Development</a></div>
+</div>

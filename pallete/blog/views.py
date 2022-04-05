@@ -72,3 +72,11 @@ def create_comment(request, post_id):
     
     return redirect('post', post_id)
 
+def search_post(request):
+    if request.method == 'GET':
+        q = request.GET.get('q', '')
+        posts = Post.objects.filter(text__icontains=q)
+        context = {'posts': posts}
+    
+    return render(request, 'search.html', context)
+
