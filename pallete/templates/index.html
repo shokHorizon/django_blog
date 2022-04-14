@@ -10,7 +10,7 @@
             <img src="{% static 'images/topic_image.jpg' %}" alt="">
         </div> 
         <div class="pill active">
-            <span">{{ post.category }}</span>
+            <span>{{ post.category }}</span>
         </div>
         <div class='card-header'>
             <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
