@@ -132,8 +132,14 @@ body{
     margin: 5px
 }
 
+.pills{
+    display: flex;
+    height: min-content;
+    align-items: center;
+}
+
 .card{
-    grid-template-rows: 25% 20% 10%;
+    grid-template-rows: 45% 25% 20% 10%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 23.75%, rgba(0, 0, 0, 0.7) 100%);
     border: solid black 1px;
     width: 300px;
@@ -183,15 +189,16 @@ body{
     color: #f9eaff;
     background-color: #b82020;
     font-size: 0.8rem;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 0.2em;
+    margin: 0 0.1em;
 }
 
 .btn-edit{
     color: #f9eaff;
     background-color: #cab419;
     font-size: 0.8rem;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 0.2em;
 }
 

@@ -6,18 +6,20 @@
 <div class='container card-container'>
 {% for post in popular_posts %}
     <div class="card">
-        <div class="card-image">
-            <img src="{% static 'images/topic_image.jpg' %}" alt="">
-        </div> 
-        <div class="pill active">
-            <span>{{ post.category }}</span>
-        </div>
-        <div class='card-header'>
-            <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
+        <div class='pills'>
+            <div class="pill active">
+                <span>{{ post.category }}</span>
+            </div>
             {% if request.user.is_authenticated and request.user.id == post.author.id %}
                 <a class='btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
                 <a class='btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
             {% endif %} 
+        </div>
+        <div class="card-image">
+            <img src="{% static 'images/topic_image.jpg' %}" alt="">
+        </div> 
+        <div class='card-header'>
+            <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
         </div>
         <div class='card-body'>          
             <p>{{ post.text|striptags|slice:":100" }}...</p>
@@ -55,18 +57,20 @@
 <div class='container card-container'>
     {% for post in recent_posts %}
         <div class="card">
-            <div class="card-image">
-                <img src="{% static 'images/topic_image.jpg' %}" alt="">
-            </div> 
-            <div class="pill active">
-                <span>{{ post.category }}</span>
-            </div>
-            <div class='card-header'>
-                <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
+            <div class='pills'>
+                <div class="pill active">
+                    <span>{{ post.category }}</span>
+                </div>
                 {% if request.user.is_authenticated and request.user.id == post.author.id %}
                     <a class='btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
                     <a class='btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
                 {% endif %} 
+            </div>
+            <div class="card-image">
+                <img src="{% static 'images/topic_image.jpg' %}" alt="">
+            </div> 
+            <div class='card-header'>
+                <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
             </div>
             <div class='card-body'>          
                 <p>{{ post.text|striptags|slice:":100" }}...</p>
