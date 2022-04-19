@@ -10,6 +10,7 @@
                     Написать статью
                 </a>
             </li>
+            <img src="{% static 'images/find.svg' %}" onclick='search_form.submit();'>
             <form id="search_form" action="{% url 'search_post'  %}" method="GET">
                 <input class="text-black" name='q' type="text" placeholder="Поиск">
             </form>

@@ -20,6 +20,10 @@ ul {
     transition: .5s ease-in-out;
 }
 
+.invert{
+    filter: invert(100%);
+}
+
 .container{
     max-width: 960px;
     margin: 0 auto;
@@ -52,6 +56,24 @@ nav *{
 .nav-item{
     margin-left: 10px;
     align-self: center;
+}
+
+#search_form{
+    align-self: center;
+}
+
+#search_form *{
+    border-radius: 20px;
+    padding: 0.4em;
+    padding-left: 2em;
+}
+
+.nav-list img{
+    height: 50%;
+    align-self: center;
+    margin-right: -2em;
+    margin-left: 2em;
+    z-index: 2;
 }
 
 body{
@@ -147,7 +169,10 @@ body{
 }
 
 .card-footer{
-    padding-left: 1.5em;
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card-footer img{
@@ -186,8 +211,25 @@ body{
     padding: 1em 0;
 }
 
+.post-footer{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+
+.metrics{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
 .container.post{
     max-width: 780px;
+}
+
+.container.post img{
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .comment{
@@ -199,6 +241,12 @@ body{
 .comment span{
     display: block;
     padding: 0.5em;
+}
+
+.leave_comment textarea{
+    resize: none;
+    width: 100%;
+    height: auto;
 }
 
 .text-black{

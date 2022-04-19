@@ -25,24 +25,28 @@
         <div class='card-footer'>
             <span>{{ post.pub_date|date:"d.m.y" }}</span>
             <span>Автор: {{ post.author }}</span>
-            <span>{{ post.likes.count }}
-                {% if request.user.is_authenticated %}
-                {% if request.user in post.likes.all %}
-                <a href="{% url 'like_post' post.id %}">
-                    <img src="{% static 'images/like_active.svg' %}">
-                </a>
-                {% else %}
-                <a href="{% url 'like_post' post.id %}">
-                    <img src="{% static 'images/like.svg' %}">
-                </a>
-                {% endif %}
-                {% else %}
-                <img src="{% static 'images/like.svg' %}">
-                {% endif %}
-            </span>
-            <span>{{ post.comments.count }}
-                <img src="{% static 'images/comment.svg' %}">
-            </span>     
+            <div class="metrics">
+                <div>
+                    {{ post.likes.count }}
+                    {% if request.user.is_authenticated %}
+                        {% if request.user in post.likes.all %}
+                        <a href="{% url 'like_post' post.id %}">
+                            <img src="{% static 'images/like_active.svg' %}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'like_post' post.id %}">
+                            <img src="{% static 'images/like.svg' %}">
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <img src="{% static 'images/like.svg' %}">
+                    {% endif %}
+                </div>
+                <div>
+                    {{ post.comments.count }}
+                    <img src="{% static 'images/comment.svg' %}">
+                </div>
+            </div> 
         </div>   
     </div>
 {% endfor %}
@@ -70,24 +74,28 @@
             <div class='card-footer'>
                 <span>{{ post.pub_date|date:"d.m.y" }}</span>
                 <span>Автор: {{ post.author }}</span>
-                <span>{{ post.likes.count }}
-                    {% if request.user.is_authenticated %}
-                    {% if request.user in post.likes.all %}
-                    <a href="{% url 'like_post' post.id %}">
-                        <img src="{% static 'images/like_active.svg' %}">
-                    </a>
-                    {% else %}
-                    <a href="{% url 'like_post' post.id %}">
-                        <img src="{% static 'images/like.svg' %}">
-                    </a>
-                    {% endif %}
-                    {% else %}
-                    <img src="{% static 'images/like.svg' %}">
-                    {% endif %}
-                </span>
-                <span>{{ post.comments.count }}
-                    <img src="{% static 'images/comment.svg' %}">
-                </span>        
+                <div class="metrics">
+                    <div>
+                        {{ post.likes.count }}
+                        {% if request.user.is_authenticated %}
+                            {% if request.user in post.likes.all %}
+                            <a href="{% url 'like_post' post.id %}">
+                                <img src="{% static 'images/like_active.svg' %}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'like_post' post.id %}">
+                                <img src="{% static 'images/like.svg' %}">
+                            </a>
+                            {% endif %}
+                            {% else %}
+                            <img src="{% static 'images/like.svg' %}">
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ post.comments.count }}
+                        <img src="{% static 'images/comment.svg' %}">
+                    </div>
+                </div> 
             </div>   
         </div>
     {% endfor %}
