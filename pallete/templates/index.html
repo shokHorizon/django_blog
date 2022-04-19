@@ -4,7 +4,7 @@
 {% block content %}
 <h2 class="index-header">Статьи недели:</h2>
 <div class='container card-container'>
-{% for post in posts %}
+{% for post in popular_posts %}
     <div class="card">
         <div class="card-image">
             <img src="{% static 'images/topic_image.jpg' %}" alt="">
@@ -53,13 +53,13 @@
 </div>
 <h2 class="index-header">Недавние статьи:</h2>
 <div class='container card-container'>
-    {% for post in posts %}
+    {% for post in recent_posts %}
         <div class="card">
             <div class="card-image">
                 <img src="{% static 'images/topic_image.jpg' %}" alt="">
             </div> 
             <div class="pill active">
-                <span">{{ post.category }}</span>
+                <span>{{ post.category }}</span>
             </div>
             <div class='card-header'>
                 <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>

@@ -1,9 +1,10 @@
 {% extends '_base.html' %}
+{% block header %}
+    {% include '_header.html' with current_category=post.category %}
+{% endblock %}
+
 {% block content %}
 {% load static %}
-<div class='categories'>
-    <div class="pill active"><a>{{ post.category }}</a></div>
-</div>
 <div class="container post">
     <div class="post-title">
         <h1>{{ post.title }}</h1>

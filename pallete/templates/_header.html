@@ -1,4 +1,5 @@
 {% load static %}
+{% block header %}
 <header>
     <nav class="container">
         <a class='navbar-brand' href='{% url 'index' %}'>
@@ -35,3 +36,13 @@
         </ul>
     </nav>
 </header>
+<div class='categories container'>
+    {% for category in categories %}
+        {% if category == current_category %}
+        <div class="pill active"><a>{{ category }}</a></div>
+        {% else %}
+        <div class="pill"><a>{{ category }}</a></div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

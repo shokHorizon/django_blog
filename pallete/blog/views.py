@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user
 from django.shortcuts import redirect, render, get_object_or_404
@@ -9,7 +10,11 @@ from .models import Post
 
 
 def index(request):
-    context = {'posts': Post.objects.order_by('-pub_date')[:10]}
+    delta_week = date.today()-timedelta(days=7)
+    context = {
+        'recent_posts': Post.objects.order_by('-pub_date')[:3],
+        'popular_posts': Post.objects.filter(pub_date__gte=delta_week).order_by('-likes')[:3],
+        }
     return render(request, 'index.html', context=context)
     
     

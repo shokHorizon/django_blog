@@ -7,8 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    {% include '_header.html' %}
+    
+    
+    {% block header %}
+        {% include '_header.html' with current_category=current_category %}
+    {% endblock %}
     <main class='container'>
-        {% block content %}{% endblock content %}
+        {% block content %}
+        
+        {% endblock content %}
     </main>
 </body>
