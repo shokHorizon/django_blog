@@ -108,7 +108,11 @@ body{
 }
 
 .pill.active:hover{
-    opacity: 70%;
+    opacity: 80%;
+}
+
+.pill:hover{
+    background-color: #79b8ff
 }
 
 .index-header{
@@ -117,9 +121,11 @@ body{
 }
 
 .card-container{
-    display: flex;
-    justify-content: space-between;
-    margin-left: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 300px;
+    grid-gap: 1em;
+    grid-auto-flow: row;
 }
 
 .card *{
@@ -136,6 +142,7 @@ body{
     display: flex;
     height: min-content;
     align-items: center;
+    padding: 1em;
 }
 
 .card{
@@ -188,17 +195,21 @@ body{
 .btn-del{
     color: #f9eaff;
     background-color: #b82020;
-    font-size: 0.8rem;
-    border-radius: 10px;
     padding: 0.2em;
-    margin: 0 0.1em;
 }
 
 .btn-edit{
     color: #f9eaff;
     background-color: #cab419;
+    padding: 0.2em;
+}
+
+.btn-send{
+    color: #ffffff;
+    background-color: #1ece50;
     font-size: 0.8rem;
-    border-radius: 10px;
+    border-radius: 5px;
+    border-width: 1px;
     padding: 0.2em;
 }
 
@@ -234,6 +245,10 @@ body{
     max-width: 780px;
 }
 
+.container.post *{
+    font-family: verdana;
+}
+
 .container.post img{
     max-width: 100%;
     object-fit: contain;
@@ -258,4 +273,26 @@ body{
 
 .text-black{
     color: black;
+}
+
+.login_form{
+    width: 360px;
+    margin: 0 auto;
+}
+
+.login_form input{
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-width: 1px;
+}
+
+.login-form.form-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-form.form-footer *{
+    color: gray;
 }

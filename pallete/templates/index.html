@@ -11,8 +11,8 @@
                 <span>{{ post.category }}</span>
             </div>
             {% if request.user.is_authenticated and request.user.id == post.author.id %}
-                <a class='btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
-                <a class='btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
+                <a class='pill btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
+                <a class='pill btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
             {% endif %} 
         </div>
         <div class="card-image">
@@ -62,8 +62,8 @@
                     <span>{{ post.category }}</span>
                 </div>
                 {% if request.user.is_authenticated and request.user.id == post.author.id %}
-                    <a class='btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
-                    <a class='btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
+                    <a class='pill btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
+                    <a class='pill btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
                 {% endif %} 
             </div>
             <div class="card-image">

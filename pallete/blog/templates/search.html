@@ -1,23 +1,29 @@
-
 {% extends '_base.html' %}
 {% load static %}
+
+{% block header %}
+    {% include '_header.html' with current_category=category %}
+{% endblock %}
+
 {% block content %}
 <h2 class="index-header">Результаты поиска:</h2>
 <div class='container card-container'>
 {% for post in posts %}
     <div class="card">
+        <div class='pills'>
+            <div class="pill active">
+                <span>{{ post.category }}</span>
+            </div>
+            {% if request.user.is_authenticated and request.user.id == post.author.id %}
+                <a class='pill btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
+                <a class='pill btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
+            {% endif %} 
+        </div>
         <div class="card-image">
             <img src="{% static 'images/topic_image.jpg' %}" alt="">
         </div> 
-        <div class="pill active">
-            <span">{{ post.category }}</span>
-        </div>
         <div class='card-header'>
             <a class='post-title' href="{% url 'post' post.id %}">{{ post.title }}</a>
-            {% if request.user.is_authenticated and request.user.id == post.author.id %}
-                <a class='btn-del' href="{% url 'delete_post' post.id %}">Удалить</a>
-                <a class='btn-edit' href="{% url 'edit_post' post.id %}">Изменить</a> 
-            {% endif %} 
         </div>
         <div class='card-body'>          
             <p>{{ post.text|striptags|slice:":100" }}...</p>
@@ -25,24 +31,28 @@
         <div class='card-footer'>
             <span>{{ post.pub_date|date:"d.m.y" }}</span>
             <span>Автор: {{ post.author }}</span>
-            <span>{{ post.likes.count }}
-                {% if request.user.is_authenticated %}
-                {% if request.user in post.likes.all %}
-                <a href="{% url 'like_post' post.id %}">
-                    <img src="{% static 'images/like_active.svg' %}">
-                </a>
-                {% else %}
-                <a href="{% url 'like_post' post.id %}">
-                    <img src="{% static 'images/like.svg' %}">
-                </a>
-                {% endif %}
-                {% else %}
-                <img src="{% static 'images/like.svg' %}">
-                {% endif %}
-            </span>
-            <span>{{ post.comments.count }}
-                <img src="{% static 'images/comment.svg' %}">
-            </span>     
+            <div class="metrics">
+                <div>
+                    {{ post.likes.count }}
+                    {% if request.user.is_authenticated %}
+                        {% if request.user in post.likes.all %}
+                        <a href="{% url 'like_post' post.id %}">
+                            <img src="{% static 'images/like_active.svg' %}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'like_post' post.id %}">
+                            <img src="{% static 'images/like.svg' %}">
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <img src="{% static 'images/like.svg' %}">
+                    {% endif %}
+                </div>
+                <div>
+                    {{ post.comments.count }}
+                    <img src="{% static 'images/comment.svg' %}">
+                </div>
+            </div> 
         </div>   
     </div>
 {% endfor %}

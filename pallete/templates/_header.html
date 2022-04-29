@@ -14,6 +14,7 @@
             <img src="{% static 'images/find.svg' %}" onclick='search_form.submit();'>
             <form id="search_form" action="{% url 'search_post'  %}" method="GET">
                 <input class="text-black" name='q' type="text" placeholder="Поиск">
+                <input type="hidden" name="category" value="{{ category }}" >
             </form>
             {% if request.user.is_authenticated is False %}
             <li class="nav-item">
@@ -38,10 +39,10 @@
 </header>
 <div class='categories container'>
     {% for category in categories %}
-        {% if category == current_category %}
-        <div class="pill active"><a>{{ category }}</a></div>
+        {% if category.name == current_category %}
+        <div class="pill active"><a href="{% url 'index' %}">{{ category }}</a></div>
         {% else %}
-        <div class="pill"><a>{{ category }}</a></div>
+        <div class="pill"><a href="{% url 'search_post' %}?category={{ category }}">{{ category }}</a></div>
         {% endif %}
     {% endfor %}
 </div>

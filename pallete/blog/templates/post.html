@@ -1,10 +1,11 @@
 {% extends '_base.html' %}
+{% load static %}
+
 {% block header %}
-    {% include '_header.html' with current_category=post.category %}
+    {% include '_header.html' with current_category=post.category.name %}
 {% endblock %}
 
 {% block content %}
-{% load static %}
 <div class="container post">
     <div class="post-title">
         <h1>{{ post.title }}</h1>
@@ -52,11 +53,17 @@
         </div>
         {% endfor %}
         {% endif %}
+        {% if request.user.is_authenticated %}
         <form class="leave_comment" method="POST" action="{% url 'create_comment' post.id %}">
             {% csrf_token %}
             {{ form.text }}
-            <input type="submit">
+            <input class="pill btn-send" type="submit" value="Оставить комментарий">
         </form>
+        {% else %}
+        <div>
+            <a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

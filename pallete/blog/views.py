@@ -1,6 +1,8 @@
 from datetime import date, timedelta
+from unicodedata import category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user
+from django.db.models import Q
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -80,8 +82,18 @@ def create_comment(request, post_id):
 def search_post(request):
     if request.method == 'GET':
         q = request.GET.get('q', '')
-        posts = Post.objects.filter(text__icontains=q)
-        context = {'posts': posts}
+        category = request.GET.get('category', '')
+        posts = Post.objects
+
+        if category:
+            posts = posts.filter(category__name=category)
+        if q:
+            posts = posts.filter(Q(title__icontains=q)|Q(text__icontains=q))
+
+        context = {
+            'posts': posts,
+            'category': category,
+            }
     
     return render(request, 'search.html', context)
 
